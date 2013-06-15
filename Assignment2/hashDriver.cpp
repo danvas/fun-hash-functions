@@ -9,6 +9,9 @@
 #include <iomanip>
 #include <string>
 
+/// Blah blah blah...
+#include <iconv.h> // blah
+
 
 class TableEntry {
 private:
