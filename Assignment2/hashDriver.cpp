@@ -6,8 +6,14 @@
 
 
 #include <iostream>
+#include <cstdlib>
+#include <fstream>
 
 
+using namespace std;
+
+int goodHash(string key);
+int poorHash(string key);
 
 class TableEntry {
 private:
@@ -82,6 +88,7 @@ public:
 // See assignment description.
 int main( int argc, char* argv[])
 {
+    /*
     // Generate empty hash tables:
     Hasher* goodHashRP1 = new Hasher('g', 'd');
     Hasher* goodHashQP1 = new Hasher('g', 'q');
@@ -118,6 +125,36 @@ int main( int argc, char* argv[])
     
     
     goodHashRP1->printTable();
+    */ // Original code commented out while writing Part 2
     
+    
+    cout << poorHash("ABCDEFGH") << endl;
+    
+    string line;
+    ifstream infile ("small.txt");
+    if (infile.is_open())
+    {
+        while ( infile.good() )
+        {
+            getline (infile,line);
+            // TODO: parse line here and call poorHash on the key
+            cout << line << endl;
+        }
+        infile.close();
+    }
+    else cout << "Unable to open file";
+    cout << getcwd(NULL, 0);
     return 0;
+}
+
+int goodHash(string key){
+    return 0;
+}
+
+int poorHash(string key){
+    int sum = 0;
+    for(int i = 0; i < key.size(); i++){
+        sum += key[i]+0;
+    }
+    return sum;
 }
