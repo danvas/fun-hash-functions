@@ -13,13 +13,25 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    string wdir = "/Users/danvas/Google Drive/School/BCS/CPSC/221/Dev/Assignment2/Assignment2/"
-    int numRecords = 25;
+    int numRecords;
+    string fname;
     
-    string fname = "genData25small.txt";
-    string infile = wdir + fname;
+    // Input values from command line (uncomment for delivery)
+//    numRecords = argv[1];
+//    fname = argv[2];
+    
+    // Default values (uncomment for testing phase)
+    numRecords = 25;
+    fname = "small.txt";
+    
+
+    
+    string wdir = "/Users/danvas/Google Drive/School/BCS/CPSC/221/Dev/Assignment2/";
+
+    string outfile = wdir + fname;
+    
     string line;
-    ifstream mazefile (infile.c_str()); // .c_str needed to compile in gcc!
+    ifstream mazefile (outfile.c_str()); // .c_str needed to compile in gcc!
     
     char maze[SIZE][SIZE];
     for( int row = 0 ; row < SIZE ; row++ ){
