@@ -40,12 +40,12 @@ int main(int argc, const char* argv[])
      */ // debugging code
     
     // Input values from command line arguments (uncomment for delivery)
-//    numRecords = atoi(argv[1]);
-//    fname = argv[2];
+    numRecords = atoi(argv[1]);
+    filename = argv[2];
     
     // Default values (uncomment for testing phase)
-    numRecords = 25;
-    filename = "small.txt";
+//    numRecords = 25;
+//    filename = "small.txt";
     
     ofstream outfile;
     outfile.open(filename, std::ios_base::app);
