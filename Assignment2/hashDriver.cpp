@@ -8,9 +8,6 @@
 #include <iostream>
 
 
-/// Blah blah blah...
-#include <iconv.h> // blah
-
 
 class TableEntry {
 private:
