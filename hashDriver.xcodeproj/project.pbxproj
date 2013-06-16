@@ -37,7 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		995B34C7176D240400B21A5C /* Assignment2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Assignment2; sourceTree = BUILT_PRODUCTS_DIR; };
+		995B34C7176D240400B21A5C /* hashDriver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hashDriver; sourceTree = BUILT_PRODUCTS_DIR; };
 		995B34CC176D240400B21A5C /* hashDriver.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = hashDriver.1; sourceTree = "<group>"; };
 		998651EF176D245E00F53210 /* hashDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hashDriver.cpp; sourceTree = "<group>"; };
 		99C3FF4D176D6B8A00C2A432 /* genData */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = genData; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +75,7 @@
 		995B34C8176D240400B21A5C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				995B34C7176D240400B21A5C /* Assignment2 */,
+				995B34C7176D240400B21A5C /* hashDriver */,
 				99C3FF4D176D6B8A00C2A432 /* genData */,
 			);
 			name = Products;
@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		995B34C6176D240400B21A5C /* Assignment2 */ = {
+		995B34C6176D240400B21A5C /* hashDriver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 995B34D0176D240400B21A5C /* Build configuration list for PBXNativeTarget "Assignment2" */;
+			buildConfigurationList = 995B34D0176D240400B21A5C /* Build configuration list for PBXNativeTarget "hashDriver" */;
 			buildPhases = (
 				995B34C3176D240400B21A5C /* Sources */,
 				995B34C4176D240400B21A5C /* Frameworks */,
@@ -115,9 +115,9 @@
 			);
 			dependencies = (
 			);
-			name = Assignment2;
+			name = hashDriver;
 			productName = Assignment2;
-			productReference = 995B34C7176D240400B21A5C /* Assignment2 */;
+			productReference = 995B34C7176D240400B21A5C /* hashDriver */;
 			productType = "com.apple.product-type.tool";
 		};
 		99C3FF4C176D6B8A00C2A432 /* genData */ = {
@@ -146,7 +146,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Daniel Vasquez & Parham Rahmani";
 			};
-			buildConfigurationList = 995B34C2176D240300B21A5C /* Build configuration list for PBXProject "Assignment2" */;
+			buildConfigurationList = 995B34C2176D240300B21A5C /* Build configuration list for PBXProject "hashDriver" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -158,7 +158,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				995B34C6176D240400B21A5C /* Assignment2 */,
+				995B34C6176D240400B21A5C /* hashDriver */,
 				99C3FF4C176D6B8A00C2A432 /* genData */,
 			);
 		};
@@ -244,14 +244,14 @@
 		995B34D1176D240400B21A5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = hashDriver;
 			};
 			name = Debug;
 		};
 		995B34D2176D240400B21A5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = hashDriver;
 			};
 			name = Release;
 		};
@@ -272,7 +272,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		995B34C2176D240300B21A5C /* Build configuration list for PBXProject "Assignment2" */ = {
+		995B34C2176D240300B21A5C /* Build configuration list for PBXProject "hashDriver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				995B34CE176D240400B21A5C /* Debug */,
@@ -281,7 +281,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		995B34D0176D240400B21A5C /* Build configuration list for PBXNativeTarget "Assignment2" */ = {
+		995B34D0176D240400B21A5C /* Build configuration list for PBXNativeTarget "hashDriver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				995B34D1176D240400B21A5C /* Debug */,
