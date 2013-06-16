@@ -8,7 +8,10 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-
+#include <time.h> // for random seeding
+#include <string>
+#include <sstream>
+#include <cxxabi.h> // for demangling/debugging
 using namespace std;
 
 int main(int argc, const char* argv[])
@@ -38,10 +41,37 @@ int main(int argc, const char* argv[])
     numRecords = 25;
     fname = "small.txt";
     
+    int numLettersInKey = 8;
 
 
     
     string wdir = "/Users/danvas/Google Drive/School/BCS/CPSC/221/Dev/Assignment2/";
+    
+    string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    // Loop to generate key-value pairs in a file (WIP)
+    srand(time(0));
+    for (int n = 0; n < numRecords; n++){
+        
+        // Generate key with 8 letters
+        string key;
+        for(int i = 0; i < numLettersInKey; i++) {
+            stringstream ss;
+            string s;
+            ss << letters[rand()%26];
+            ss >> s;
+            key.append(s);
+        }
+
+        /*
+        // Print type of data (DELETE WHEN READY TO DELIVER)
+        int success;
+        char *realname = abi::__cxa_demangle(typeid(key).name(), 0, 0, &success);
+        cout << realname << endl;
+        */ // debugging code
+
+        cout << n << "\t" << key << endl;
+    }
 
 //    string outfile = wdir + fname;
 //    
