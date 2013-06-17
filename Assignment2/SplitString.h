@@ -8,8 +8,8 @@
 
 // Code derived from http://www.cplusplus.com/articles/1UqpX9L8/
 
-#ifndef __hashDriver__SplitString__
-#define __hashDriver__SplitString__
+//#ifndef __hashDriver__SplitString__
+//#define __hashDriver__SplitString__
 
 #include <string>
 #include <vector>
@@ -25,4 +25,4 @@ public:
     vector<string>& split(char delim, int rep=0);
 };
 
-#endif /* defined(__hashDriver__SplitString__) */
+//#endif /* defined(__hashDriver__SplitString__) */

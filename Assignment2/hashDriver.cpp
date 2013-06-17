@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include "SplitString.h"
+#include <cstring>
 #include <cxxabi.h> // for demangling/debugging
 
 
@@ -141,7 +141,6 @@ int main( int argc, char* argv[])
 
 // Prints out the results of using poorHash function on file small.txt
 void displayPoorHash(){
-    char delim = '\t';
     string line;
     ifstream infile ("small.txt");
     if (infile.is_open())
@@ -150,11 +149,13 @@ void displayPoorHash(){
         {
             getline (infile,line);
             
-            
-            if (not line.empty()){
-                SplitString keyValue(line);
-                vector<string> key = keyValue.split(delim);
-                cout << key[0] << "\t" << poorHash(key[0]) << endl;
+            // Tokenize string using strtok
+            if(not line.empty()){
+                char* chr = strdup(line.c_str()); // Convert string to char
+                char * pch;
+                pch = strtok(chr, "\t"); // Tokenize string by delimiter "\t"
+                cout << pch << "\t" << poorHash(pch) << endl;
+                free(chr);
             }
         }
         infile.close();
@@ -166,18 +167,21 @@ void displayPoorHash(){
 
 // Prints out the results of using goodHash function on file small.txt
 void displayGoodHash(){
-    char delim = '\t';
     string line;
-    ifstream infile ("small.txt");
+    ifstream infile ("small.txt"); // TODO: Make this a command line argument
     if (infile.is_open())
     {
         while ( infile.good() )
         {
             getline (infile,line);
-            if (not line.empty()){
-                SplitString keyValue(line);
-                vector<string> key = keyValue.split(delim);
-                cout << key[0] << "\t" << goodHash(key[0]) << endl;
+            
+            // Tokenize string using strtok
+            if(not line.empty()){
+                char* chr = strdup(line.c_str()); // Convert string to char
+                char * pch;
+                pch = strtok(chr, "\t"); // Tokenize string by delimiter "\t"
+                cout << pch << "\t" << goodHash(pch) << endl;
+                free(chr);
             }
         }
         infile.close();
