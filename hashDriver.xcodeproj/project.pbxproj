@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		994B9D7B176ED9FA003E2BF6 /* SplitString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 994B9D79176ED9FA003E2BF6 /* SplitString.cpp */; };
 		995B34CD176D240400B21A5C /* hashDriver.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 995B34CC176D240400B21A5C /* hashDriver.1 */; };
 		998651F0176D245E00F53210 /* hashDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 998651EF176D245E00F53210 /* hashDriver.cpp */; };
 		99C3FF50176D6B8A00C2A432 /* genData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FF4F176D6B8A00C2A432 /* genData.cpp */; };
@@ -37,6 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		994B9D79176ED9FA003E2BF6 /* SplitString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplitString.cpp; sourceTree = "<group>"; };
+		994B9D7A176ED9FA003E2BF6 /* SplitString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitString.h; sourceTree = "<group>"; };
 		995B34C7176D240400B21A5C /* hashDriver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hashDriver; sourceTree = BUILT_PRODUCTS_DIR; };
 		995B34CC176D240400B21A5C /* hashDriver.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = hashDriver.1; sourceTree = "<group>"; };
 		998651EF176D245E00F53210 /* hashDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hashDriver.cpp; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 			children = (
 				998651EF176D245E00F53210 /* hashDriver.cpp */,
 				995B34CC176D240400B21A5C /* hashDriver.1 */,
+				994B9D79176ED9FA003E2BF6 /* SplitString.cpp */,
+				994B9D7A176ED9FA003E2BF6 /* SplitString.h */,
 			);
 			name = hashDriver;
 			path = Assignment2;
@@ -170,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				998651F0176D245E00F53210 /* hashDriver.cpp in Sources */,
+				994B9D7B176ED9FA003E2BF6 /* SplitString.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +303,7 @@
 				99C3FF55176D6B8A00C2A432 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

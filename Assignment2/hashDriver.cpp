@@ -8,12 +8,16 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include "SplitString.h"
+#include <cxxabi.h> // for demangling/debugging
 
 
 using namespace std;
 
-int goodHash(string key);
-int poorHash(string key);
+unsigned int goodHash(string key);
+unsigned int poorHash(string key);
+void displayPoorHash();
+void displayGoodHash();
 
 class TableEntry {
 private:
@@ -127,9 +131,17 @@ int main( int argc, char* argv[])
     goodHashRP1->printTable();
     */ // Original code commented out while writing Part 2
     
-    
-    cout << poorHash("ABCDEFGH") << endl;
-    
+    cout << "poorHash: " << endl;
+    displayPoorHash();
+    cout << "goodHash: " << endl;
+    displayGoodHash();
+
+    return 0;
+}
+
+// Prints out the results of using poorHash function on file small.txt
+void displayPoorHash(){
+    char delim = '\t';
     string line;
     ifstream infile ("small.txt");
     if (infile.is_open())
@@ -137,24 +149,60 @@ int main( int argc, char* argv[])
         while ( infile.good() )
         {
             getline (infile,line);
-            // TODO: parse line here and call poorHash on the key
-            cout << line << endl;
+            
+            
+            if (not line.empty()){
+                SplitString keyValue(line);
+                vector<string> key = keyValue.split(delim);
+                cout << key[0] << "\t" << poorHash(key[0]) << endl;
+            }
         }
         infile.close();
     }
     else cout << "Unable to open file";
-    cout << getcwd(NULL, 0);
-    return 0;
+    cout << endl;
+
 }
 
-int goodHash(string key){
-    return 0;
+// Prints out the results of using goodHash function on file small.txt
+void displayGoodHash(){
+    char delim = '\t';
+    string line;
+    ifstream infile ("small.txt");
+    if (infile.is_open())
+    {
+        while ( infile.good() )
+        {
+            getline (infile,line);
+            if (not line.empty()){
+                SplitString keyValue(line);
+                vector<string> key = keyValue.split(delim);
+                cout << key[0] << "\t" << goodHash(key[0]) << endl;
+            }
+        }
+        infile.close();
+    }
+    else cout << "Unable to open file";
+    cout << endl;
+
 }
 
-int poorHash(string key){
+// TODO: Implement this! Temporarily using code from http://stackoverflow.com/a/107657 
+unsigned int goodHash(string key){
+    const char* s = key.c_str();
+    unsigned hash = 0;
+    while (*s)
+    {
+        hash = hash * 101  +  *s++;
+    }
+    return hash % TABLE_SIZE;
+}
+
+// Takes a string key and generates a hash number by taking the sum of its ASCII character values 
+unsigned int poorHash(string key){
     int sum = 0;
     for(int i = 0; i < key.size(); i++){
         sum += key[i]+0;
     }
-    return sum;
+    return sum % TABLE_SIZE;
 }

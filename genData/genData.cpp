@@ -24,6 +24,7 @@ int main(int argc, const char* argv[])
     const int numLettersInKey = 8;
     int numRecords;
     const char* filename;
+    string delim = "\t"; // Tab space separating key and value pair in a line
     
     /*
      // For debugging (DELETE WHEN READY TO DELIVER)
@@ -71,7 +72,7 @@ int main(int argc, const char* argv[])
              */ // debugging code
             
             
-            outfile << key << "\t" << n << endl;
+            outfile << key << delim << n << endl;
             cout << n << "\t" << key << endl;
         }
         outfile.close();
