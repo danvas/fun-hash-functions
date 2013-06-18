@@ -103,10 +103,11 @@ int Hasher::generateTableSize(char* filename){
             }
         }
         infile.close();
+        std::cout << num << " records found in " << fileName << std::endl;
     }
     else std::cout << "Unable to open file" << std::endl;
     
-    std::cout << num << " records found in " << fileName << std::endl;
+    
     
     num = num * 2;
     while(not isPrime(num)){
