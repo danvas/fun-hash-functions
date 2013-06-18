@@ -47,11 +47,14 @@ private:
 public:
     // Define the necessary constructors (be sure to initialize your table entries to NULL):
     
+//    hashType is either g (for good) or p (for poor)
+//    probeType is either d (for double) or q (for quadratic)
+//    loadFactor is the load factor (eg: 0.25)
+//    fileName is the name of the input file (eg: small.txt) used
+    Hasher(char hashType, char probeType);
     // See assignment description.
-    Hasher(char type, char crp);
-    // See assignment description.
-    Hasher(char type, char crp, char* filename);
-    
+    Hasher(char hashType, char probeType, double loadFactor, char* fileName);
+     
     // Define the following functions:
     
     // See assignment description.

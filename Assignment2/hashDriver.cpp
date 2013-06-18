@@ -96,7 +96,7 @@ public:
 // See assignment description.
 int main( int argc, char* argv[])
 {
-    /*
+    ///*
     // Generate empty hash tables:
     Hasher* goodHashRP1 = new Hasher('g', 'd');
     Hasher* goodHashQP1 = new Hasher('g', 'q');
@@ -133,12 +133,12 @@ int main( int argc, char* argv[])
     
     
     goodHashRP1->printTable();
-    */ // Original code commented out while writing Part 2
+    //*/ // Original code commented out while writing Part 2
     
-    cout << "poorHash: " << endl;
-    displayPoorHash();
-    cout << "goodHash: " << endl;
-    displayGoodHash();
+//    cout << "poorHash: " << endl;
+//    displayPoorHash();
+//    cout << "goodHash: " << endl;
+//    displayGoodHash();
 
     return 0;
 }

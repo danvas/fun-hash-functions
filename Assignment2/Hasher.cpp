@@ -9,11 +9,11 @@
 #include "Hasher.h"
 
 // See assignment description.
-Hasher::Hasher(char type, char crp){};
+Hasher::Hasher(char hashType, char probeType){};
 // See assignment description.
-Hasher::Hasher(char type, char crp, char* filename){};
+Hasher::Hasher(char hashType, char probeType, double loadFactor, char* fileName){};
 
-// Helper functions:
+// Private helper functions:
 
 // TODO: Implement this! Temporarily using code from http://stackoverflow.com/a/107657
 unsigned int Hasher::goodHash(std::string key){
