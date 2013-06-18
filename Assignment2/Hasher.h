@@ -41,6 +41,7 @@ private:
     char probeType;
     double loadFactor;
     char* fileName;
+    int hashTableSize;
     
     
     // Define any other necessary helper functions that are not part of the public interface:
@@ -65,6 +66,8 @@ private:
     
     // Check for prime number
     const bool isPrime(const int);
+    
+    int generateTableSize(char*);
 
     
     

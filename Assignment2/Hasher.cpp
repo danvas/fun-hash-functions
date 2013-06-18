@@ -8,6 +8,8 @@
 
 #include "Hasher.h"
 #include <math.h>
+#include <fstream>
+
 
 
 // See assignment description.
@@ -22,6 +24,9 @@ Hasher::Hasher(char hashType, char probeType, double loadFactor, char* fileName)
     this->probeType = probeType;
     this->loadFactor = loadFactor;
     this->fileName = fileName;
+    this->hashTableSize = generateTableSize(this->fileName);
+    
+    
 };
 Hasher::~Hasher(){
     for (int i = 0; i < TABLE_SIZE; i++)
@@ -72,7 +77,7 @@ const int getSize(void);
 /** @pre x>0
  *  @post if x was prime, true returned, else false
  */
-const bool isPrime(const int x){
+const bool Hasher::isPrime(const int x){
     if (x == 1 || x == 2 || x == 3 || x == 5) return true; if (x % 2 == 0 || x % 3 == 0) { return false; }
     int incr = 4; // NOTE: sqrt needs #include <math.h>
     const int maxFact = (int) sqrt( (double) x );
@@ -82,6 +87,33 @@ const bool isPrime(const int x){
     return true;
 }
 
+int Hasher::generateTableSize(char* filename){
+    int num = 0;
+    std::string line;
+    std::ifstream infile (filename);
+    if (infile.is_open())
+    {
+        while ( infile.good() )
+        {
+            getline (infile,line);
+            
+            // Tokenize string using strtok
+            if(not line.empty()){
+                num++;
+            }
+        }
+        infile.close();
+    }
+    else std::cout << "Unable to open file" << std::endl;
+    
+    std::cout << num << " records found in " << fileName << std::endl;
+    
+    num = num * 2;
+    while(not isPrime(num)){
+        num++;
+    }
+    return num;
+}
 
 
 
