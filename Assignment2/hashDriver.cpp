@@ -20,6 +20,76 @@ unsigned int poorHash(string key);
 void displayPoorHash();
 void displayGoodHash();
 
+/*
+class TableEntry {
+private:
+    std::string key;
+    int value;
+public:
+    TableEntry(std::string key, int value) {
+        this->key = key;
+        this->value = value;
+    }
+    
+    std::string getKey() { return key; }
+    int getValue() { return value; }
+    
+};
+
+
+#define TABLE_SIZE 100 // Change as necessary
+class Hasher {
+private:
+    TableEntry** table;
+    
+    // Define any other necessary helper functions that are not part of the public interface:
+    
+    unsigned int goodHash();
+    unsigned int poorHash();
+    
+    
+    
+public:
+    // Define the necessary constructors (be sure to initialize your table entries to NULL):
+    
+    // See assignment description.
+    Hasher(char type, char crp);
+    // See assignment description.
+    Hasher(char type, char crp, char* filename);
+    
+    // Define the following functions:
+    
+    // See assignment description.
+    bool search(std::string key, int& subscript);
+    // See assignment description.
+    bool insert(std::string key, int value);
+    // See assignment description.
+    bool remove(std::string key);
+    
+    bool isFull();
+    
+    // Simply outputs the current contents of the table and the indices (you can write a loop
+    // that just prints out the underlying array):
+    // E.g.
+    //    table->printTable() might generate:
+    //        25  HBZEJKGA   1
+    //        32  RHJMIVTA   2
+    //
+    void printTable();
+    
+    // Define any other necessary functions that are part of the public interface:
+    
+    // Destructor-- do not alter.
+    ~Hasher()
+    {
+        for (int i = 0; i < TABLE_SIZE; i++)
+            if (table[i] != NULL)
+                delete table[i];
+        delete[] table;
+    }
+    
+};
+*/ // Original code commented out while writing Part 3 (DELETE IF OUR HASHER SOURCE FILES WORK WELL AND WHEN READY FOR DELIVERY)
 
 // **Sample** main function/driver-- THIS IS NOT A COMPLETE TEST SUITE
 // YOU MUST WRITE YOUR OWN TESTS

@@ -1,6 +1,6 @@
 //
 //  Hasher.h
-//  hashDriver
+//  Hasher class definition
 //
 //  Created by Daniel Vasquez on 2013-06-18.
 //  Copyright (c) 2013 Daniel Vasquez & Parham Rahmani. All rights reserved.
@@ -10,6 +10,10 @@
 #define __hashDriver__Hasher__
 
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <fstream>
+#include <cstring>
 
 class TableEntry {
 private:
@@ -24,15 +28,21 @@ public:
     std::string getKey() { return key; }
     int getValue() { return value; }
     
-};
+};  
 
 
 #define TABLE_SIZE 100 // Change as necessary
+
 class Hasher {
 private:
     TableEntry** table;
     
     // Define any other necessary helper functions that are not part of the public interface:
+    
+    unsigned int goodHash(std::string key);
+    unsigned int poorHash(std::string key);
+
+    
     
 public:
     // Define the necessary constructors (be sure to initialize your table entries to NULL):
