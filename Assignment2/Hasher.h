@@ -37,20 +37,41 @@ class Hasher {
 private:
     TableEntry** table;
     
+    char hashType;
+    char probeType;
+    double loadFactor;
+    char* fileName;
+    
+    
     // Define any other necessary helper functions that are not part of the public interface:
     
     unsigned int goodHash(std::string key);
     unsigned int poorHash(std::string key);
+    
+    // Returns the key stored at given subscript.
+    const std::string getKey(const int subscript);
+    
+    // Returns the data value at given subscript.
+    const int getValue(const int subscript);
+    
+    // Returns the number of probes.
+    const int getProbes(void);
+    
+    // Returns the hashTableSize.
+    const int getCapacity(void);
+    
+    // Returns the number of non-empty elements. 
+    const int getSize(void);
 
     
     
 public:
-    // Define the necessary constructors (be sure to initialize your table entries to NULL):
+    // Necessary constructors (be sure to initialize your table entries to NULL):
     
-//    hashType is either g (for good) or p (for poor)
-//    probeType is either d (for double) or q (for quadratic)
-//    loadFactor is the load factor (eg: 0.25)
-//    fileName is the name of the input file (eg: small.txt) used
+    // hashType is either g (for good) or p (for poor)
+    // probeType is either d (for double) or q (for quadratic)
+    // loadFactor is the load factor (eg: 0.25)
+    // fileName is the name of the input file (eg: small.txt) used
     Hasher(char hashType, char probeType);
     // See assignment description.
     Hasher(char hashType, char probeType, double loadFactor, char* fileName);
@@ -78,13 +99,7 @@ public:
     // Define any other necessary functions that are part of the public interface:
     
     // Destructor-- do not alter.
-    ~Hasher()
-    {
-        for (int i = 0; i < TABLE_SIZE; i++)
-            if (table[i] != NULL)
-                delete table[i];
-        delete[] table;
-    }
+    ~Hasher();
     
 };
 

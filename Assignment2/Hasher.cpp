@@ -9,11 +9,46 @@
 #include "Hasher.h"
 
 // See assignment description.
-Hasher::Hasher(char hashType, char probeType){};
+Hasher::Hasher(char hashType, char probeType){
+    this->hashType = hashType;
+    this->probeType = probeType;
+
+};
 // See assignment description.
-Hasher::Hasher(char hashType, char probeType, double loadFactor, char* fileName){};
+Hasher::Hasher(char hashType, char probeType, double loadFactor, char* fileName){
+    this->hashType = hashType;
+    this->probeType = probeType;
+    this->loadFactor = loadFactor;
+    this->fileName = fileName;
+};
+Hasher::~Hasher(){
+    for (int i = 0; i < TABLE_SIZE; i++)
+        if (table[i] != NULL)
+            delete table[i];
+    delete[] table;
+}
 
 // Private helper functions:
+
+unsigned int goodHash(std::string key);
+unsigned int poorHash(std::string key);
+
+// Returns the key stored at given subscript.
+const std::string getKey(const int subscript);
+
+// Returns the data value at given subscript.
+const int getValue(const int subscript);
+
+// Returns the number of probes.
+const int getProbes(void);
+
+// Returns the hashTableSize.
+const int getCapacity(void);
+
+// Returns the number of non-empty elements.
+const int getSize(void);
+
+
 
 // TODO: Implement this! Temporarily using code from http://stackoverflow.com/a/107657
 unsigned int Hasher::goodHash(std::string key){
