@@ -45,14 +45,14 @@ private:
     
     // Define any other necessary helper functions that are not part of the public interface:
     
-    unsigned int goodHash(std::string key);
-    unsigned int poorHash(std::string key);
+    unsigned int goodHash(std::string);
+    unsigned int poorHash(std::string);
     
     // Returns the key stored at given subscript.
-    const std::string getKey(const int subscript);
+    const std::string getKey(const int);
     
     // Returns the data value at given subscript.
-    const int getValue(const int subscript);
+    const int getValue(const int);
     
     // Returns the number of probes.
     const int getProbes(void);
@@ -62,6 +62,9 @@ private:
     
     // Returns the number of non-empty elements. 
     const int getSize(void);
+    
+    // Check for prime number
+    const bool isPrime(const int);
 
     
     

@@ -7,6 +7,8 @@
 //
 
 #include "Hasher.h"
+#include <math.h>
+
 
 // See assignment description.
 Hasher::Hasher(char hashType, char probeType){
@@ -30,26 +32,6 @@ Hasher::~Hasher(){
 
 // Private helper functions:
 
-unsigned int goodHash(std::string key);
-unsigned int poorHash(std::string key);
-
-// Returns the key stored at given subscript.
-const std::string getKey(const int subscript);
-
-// Returns the data value at given subscript.
-const int getValue(const int subscript);
-
-// Returns the number of probes.
-const int getProbes(void);
-
-// Returns the hashTableSize.
-const int getCapacity(void);
-
-// Returns the number of non-empty elements.
-const int getSize(void);
-
-
-
 // TODO: Implement this! Temporarily using code from http://stackoverflow.com/a/107657
 unsigned int Hasher::goodHash(std::string key){
     const char* s = key.c_str();
@@ -69,6 +51,40 @@ unsigned int Hasher::poorHash(std::string key){
     }
     return sum % TABLE_SIZE;
 }
+
+// Returns the key stored at given subscript.
+const std::string Hasher::getKey(const int subscript){};
+
+// Returns the data value at given subscript.
+const int Hasher::getValue(const int subscript){};
+
+// Returns the number of probes.
+const int Hasher::getProbes(void){};
+
+// Returns the hashTableSize.
+const int Hasher::getCapacity(void){};
+
+// Returns the number of non-empty elements.
+const int getSize(void);
+
+// isPrime modified from an algorithm written by Francesco Balena
+// downloaded from http://www.devx.com/vb2themax/Tip/19051
+/** @pre x>0
+ *  @post if x was prime, true returned, else false
+ */
+const bool isPrime(const int x){
+    if (x == 1 || x == 2 || x == 3 || x == 5) return true; if (x % 2 == 0 || x % 3 == 0) { return false; }
+    int incr = 4; // NOTE: sqrt needs #include <math.h>
+    const int maxFact = (int) sqrt( (double) x );
+    for (int fact = 5; fact <= maxFact; fact += incr) { if (x % fact == 0) { return false; }
+        incr = 6 - incr;
+    }
+    return true;
+}
+
+
+
+
 // Define the following functions:
 
 // See assignment description.
