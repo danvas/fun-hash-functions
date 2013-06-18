@@ -24,7 +24,7 @@ int main(int argc, const char* argv[])
     const int numLettersInKey = 8;
     int numRecords;
     const char* filename;
-    string delim = "\t"; // Tab space separating key and value pair in a line
+    string delim = "\t"; // Tab space separating key and value in a line
     
     /*
      // For debugging (DELETE WHEN READY TO DELIVER)
@@ -44,7 +44,7 @@ int main(int argc, const char* argv[])
 //    numRecords = atoi(argv[1]);
 //    filename = argv[2];
     
-    // Default values (uncomment for testing phase)
+    // Default values (uncomment for development phase)
     numRecords = 25;
     filename = "small.txt";
     
@@ -70,8 +70,7 @@ int main(int argc, const char* argv[])
              char *realname = abi::__cxa_demangle(typeid(key).name(), 0, 0, &success);
              cout << realname << endl;
              */ // debugging code
-            
-            
+
             outfile << key << delim << n << endl;
             cout << n << "\t" << key << endl;
         }

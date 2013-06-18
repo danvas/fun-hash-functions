@@ -153,7 +153,7 @@ void displayPoorHash(){
             if(not line.empty()){
                 char* chr = strdup(line.c_str()); // Convert string to char
                 char * pch;
-                pch = strtok(chr, "\t"); // Tokenize string by delimiter "\t"
+                pch = strtok(chr, "\t"); //s Tokenize string by delimiter "\t"
                 cout << pch << "\t" << poorHash(pch) << endl;
                 free(chr);
             }
