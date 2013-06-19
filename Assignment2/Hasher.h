@@ -42,6 +42,7 @@ private:
     double loadFactor;
     char* fileName;
     int hashTableSize;
+    int numProbes;
     
     
     // Define any other necessary helper functions that are not part of the public interface:

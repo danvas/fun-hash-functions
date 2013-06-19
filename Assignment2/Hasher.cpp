@@ -9,6 +9,7 @@
 #include "Hasher.h"
 #include <math.h>
 #include <fstream>
+#include <iomanip>
 
 
 
@@ -16,6 +17,7 @@
 Hasher::Hasher(char hashType, char probeType){
     this->hashType = hashType;
     this->probeType = probeType;
+    numProbes = 0;
 
 };
 // See assignment description.
@@ -25,9 +27,9 @@ Hasher::Hasher(char hashType, char probeType, double loadFactor, char* fileName)
     this->loadFactor = loadFactor;
     this->fileName = fileName;
     this->hashTableSize = generateTableSize(this->fileName);
-    
-    
+    numProbes = 0;
 };
+
 Hasher::~Hasher(){
     for (int i = 0; i < TABLE_SIZE; i++)
         if (table[i] != NULL)
@@ -64,10 +66,14 @@ const std::string Hasher::getKey(const int subscript){};
 const int Hasher::getValue(const int subscript){};
 
 // Returns the number of probes.
-const int Hasher::getProbes(void){};
+const int Hasher::getProbes(void){
+    return numProbes;
+};
 
 // Returns the hashTableSize.
-const int Hasher::getCapacity(void){};
+const int Hasher::getCapacity(void){
+    return hashTableSize;
+};
 
 // Returns the number of non-empty elements.
 const int getSize(void);
@@ -87,6 +93,8 @@ const bool Hasher::isPrime(const int x){
     return true;
 }
 
+// Reads a file, determines the number of records, and returns
+// the next prime number greater than 2 * the number of records
 int Hasher::generateTableSize(char* filename){
     int num = 0;
     std::string line;
@@ -96,24 +104,18 @@ int Hasher::generateTableSize(char* filename){
         while ( infile.good() )
         {
             getline (infile,line);
-            
-            // Tokenize string using strtok
-            if(not line.empty()){
-                num++;
-            }
+            if( not line.empty() ) num++;
         }
         infile.close();
         std::cout << num << " records found in " << fileName << std::endl;
     }
     else std::cout << "Unable to open file" << std::endl;
-    
-    
-    
-    num = num * 2;
+
+    num = num * 2; // double the size for more room in the table
     while(not isPrime(num)){
         num++;
     }
-    return num;
+    return num; // return a prime number 
 }
 
 
@@ -136,7 +138,13 @@ bool Hasher::isFull(){return false;};
 //        25  HBZEJKGA   1
 //        32  RHJMIVTA   2
 //
-void Hasher::printTable(){};
+void Hasher::printTable(){
+    
+    for(int i = 0; i < hashTableSize; i++){
+        TableEntry* entry = table[i];
+        if(entry != NULL) std::cout << std::setw(3) << i << entry->getKey() << entry->getValue();
+    }
+}
 
 // Define any other necessary functions that are part of the public interface:
 
