@@ -28,12 +28,17 @@ public:
     std::string getKey() { return key; }
     int getValue() { return value; }
     
-};  
+};
+
+
 
 
 #define TABLE_SIZE 100 // Change as necessary
 
+#define TOMBSTONE new TableEntry("zzzzzzzz", 0)
+
 class Hasher {
+    
 private:
     TableEntry** table;
     
@@ -43,6 +48,8 @@ private:
     char* fileName;
     int hashTableSize;
     int numProbes;
+    int numEntries;
+
     
     
     // Define any other necessary helper functions that are not part of the public interface:
@@ -69,6 +76,15 @@ private:
     const bool isPrime(const int);
     
     int generateTableSize(char*);
+    
+//    /** Expand the table size when load_factor exceeds LOAD_THRESHOLD.
+//     post: The size of the table is doubled.
+//     Each nondeleted entry from the original table is
+//     reinserted into the expanded table.
+//     The value of num_keys is reset to the number of items
+//     actually inserted; num_deletes is reset to 0.
+//     */
+//    void rehash();
 
     
     

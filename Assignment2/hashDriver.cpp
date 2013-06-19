@@ -96,20 +96,20 @@ public:
 // See assignment description.
 int main( int argc, char* argv[])
 {
-    ///*
+
     // Generate empty hash tables:
     Hasher* goodHashRP1 = new Hasher('g', 'd');
-    Hasher* goodHashQP1 = new Hasher('g', 'q');
-    Hasher* badHashRP1 = new Hasher('b', 'd');
-    Hasher* badHashQP1 = new Hasher('b', 'q');
+//    Hasher* goodHashQP1 = new Hasher('g', 'q');
+//    Hasher* badHashRP1 = new Hasher('b', 'd');
+//    Hasher* badHashQP1 = new Hasher('b', 'q');
     
     // Generate hash tables that are systematically loaded from file.
     // Note that if you cannot fit an element you should stop inserting elements
     // and set a flag to full.
-    Hasher* goodHashRP2 = new Hasher('g', 'd', 0.25, "small.txt");
-    Hasher* goodHashQP2 = new Hasher('g', 'q', 0.5, "small.txt");
-    Hasher* poorHashRP2 = new Hasher('b', 'd', 0.75, "small.txt");
-    Hasher* poorHashQP2 = new Hasher('b', 'q', 0.25, "small.txt");
+//    Hasher* goodHashRP2 = new Hasher('g', 'd', 0.25, "small.txt");
+//    Hasher* goodHashQP2 = new Hasher('g', 'q', 0.5, "small.txt");
+//    Hasher* poorHashRP2 = new Hasher('b', 'd', 0.75, "small.txt");
+//    Hasher* poorHashQP2 = new Hasher('b', 'q', 0.25, "small.txt");
     
     // Sample use case:
     std::string key = "HBZEJKGA";
@@ -121,7 +121,7 @@ int main( int argc, char* argv[])
     
     int subscript = -1; 
     
-    if(goodHashRP1->search(key, subscript)) 
+    if(goodHashRP1->search(key, subscript))
         std::cout << "Found at " << subscript << std::endl;
     else
         std::cout << "Failed to insert" << std::endl;
@@ -133,7 +133,7 @@ int main( int argc, char* argv[])
     
     
     goodHashRP1->printTable();
-    //*/ // Original code commented out while writing Part 2
+
     
 //    cout << "poorHash: " << endl;
 //    displayPoorHash();

@@ -49,7 +49,7 @@ int main(int argc, const char* argv[])
     filename = "small.txt";
     
     ofstream outfile;
-    outfile.open(filename, std::ios_base::app);
+    outfile.open(filename);
     if (outfile.is_open()) {
         // Loop to generate key-value pairs in a file
         for (int n = 0; n < numRecords; n++){
