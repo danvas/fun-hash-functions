@@ -18,6 +18,7 @@ Hasher::Hasher(char hashType, char probeType){
     this->hashType = hashType;
     this->probeType = probeType;
     numProbes = 0;
+    table = new TableEntry*[TABLE_SIZE];
 
 };
 // See assignment description.
@@ -28,6 +29,7 @@ Hasher::Hasher(char hashType, char probeType, double loadFactor, char* fileName)
     this->fileName = fileName;
     this->hashTableSize = generateTableSize(this->fileName);
     numProbes = 0;
+    table = new TableEntry*[hashTableSize];
 };
 
 Hasher::~Hasher(){
@@ -60,10 +62,15 @@ unsigned int Hasher::poorHash(std::string key){
 }
 
 // Returns the key stored at given subscript.
-const std::string Hasher::getKey(const int subscript){};
+const std::string Hasher::getKey(const int subscript){
+    return table[subscript]->getKey();
+
+};
 
 // Returns the data value at given subscript.
-const int Hasher::getValue(const int subscript){};
+const int Hasher::getValue(const int subscript){
+    return table[subscript]->getValue();
+};
 
 // Returns the number of probes.
 const int Hasher::getProbes(void){

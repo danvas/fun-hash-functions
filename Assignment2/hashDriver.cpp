@@ -106,10 +106,10 @@ int main( int argc, char* argv[])
     // Generate hash tables that are systematically loaded from file.
     // Note that if you cannot fit an element you should stop inserting elements
     // and set a flag to full.
-    Hasher* goodHashRP2 = new Hasher('g', 'd', 0.25, "filename.txt");
-    Hasher* goodHashQP2 = new Hasher('g', 'q', 0.5, "filename.txt");
-    Hasher* poorHashRP2 = new Hasher('b', 'd', 0.75, "filename.txt");
-    Hasher* poorHashQP2 = new Hasher('b', 'q', 0.25, "filename.txt");
+    Hasher* goodHashRP2 = new Hasher('g', 'd', 0.25, "small.txt");
+    Hasher* goodHashQP2 = new Hasher('g', 'q', 0.5, "small.txt");
+    Hasher* poorHashRP2 = new Hasher('b', 'd', 0.75, "small.txt");
+    Hasher* poorHashQP2 = new Hasher('b', 'q', 0.25, "small.txt");
     
     // Sample use case:
     std::string key = "HBZEJKGA";
