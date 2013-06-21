@@ -41,12 +41,12 @@ int main(int argc, const char* argv[])
      */ // debugging code
     
     // Input values from command line arguments (uncomment for delivery)
-//    numRecords = atoi(argv[1]);
-//    filename = argv[2];
+    numRecords = atoi(argv[1]);
+    filename = argv[2];
     
     // Default values (uncomment for development phase)
-    numRecords = 25;
-    filename = "small.txt";
+//    numRecords = 25;
+//    filename = "small.txt";
     
     ofstream outfile;
     outfile.open(filename);
@@ -71,8 +71,8 @@ int main(int argc, const char* argv[])
              cout << realname << endl;
              */ // debugging code
 
-            outfile << key << delim << n << endl;
-            cout << n << "\t" << key << endl;
+            outfile << key << delim << n+1 << endl;
+            //cout << n+1 << "\t" << key << endl;
         }
         outfile.close();
     } else cout << "Error: File not opened";

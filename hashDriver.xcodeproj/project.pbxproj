@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		994D2BD4177102CF00F0D591 /* Hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 994D2BD2177102CF00F0D591 /* Hasher.cpp */; };
+		9948E7861773D0E9001F2D36 /* Hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9948E7841773D0E9001F2D36 /* Hasher.cpp */; };
 		995B34CD176D240400B21A5C /* hashDriver.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 995B34CC176D240400B21A5C /* hashDriver.1 */; };
 		998651F0176D245E00F53210 /* hashDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 998651EF176D245E00F53210 /* hashDriver.cpp */; };
 		99C3FF50176D6B8A00C2A432 /* genData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99C3FF4F176D6B8A00C2A432 /* genData.cpp */; };
@@ -38,8 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		994D2BD2177102CF00F0D591 /* Hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hasher.cpp; sourceTree = "<group>"; };
-		994D2BD3177102CF00F0D591 /* Hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hasher.h; sourceTree = "<group>"; };
+		9948E7841773D0E9001F2D36 /* Hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hasher.cpp; sourceTree = "<group>"; };
+		9948E7851773D0E9001F2D36 /* Hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hasher.h; sourceTree = "<group>"; };
 		995B34C7176D240400B21A5C /* hashDriver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hashDriver; sourceTree = BUILT_PRODUCTS_DIR; };
 		995B34CC176D240400B21A5C /* hashDriver.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = hashDriver.1; sourceTree = "<group>"; };
 		998651EF176D245E00F53210 /* hashDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hashDriver.cpp; sourceTree = "<group>"; };
@@ -87,10 +87,10 @@
 		995B34C9176D240400B21A5C /* hashDriver */ = {
 			isa = PBXGroup;
 			children = (
+				9948E7841773D0E9001F2D36 /* Hasher.cpp */,
+				9948E7851773D0E9001F2D36 /* Hasher.h */,
 				998651EF176D245E00F53210 /* hashDriver.cpp */,
 				995B34CC176D240400B21A5C /* hashDriver.1 */,
-				994D2BD2177102CF00F0D591 /* Hasher.cpp */,
-				994D2BD3177102CF00F0D591 /* Hasher.h */,
 			);
 			name = hashDriver;
 			path = Assignment2;
@@ -175,7 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				998651F0176D245E00F53210 /* hashDriver.cpp in Sources */,
-				994D2BD4177102CF00F0D591 /* Hasher.cpp in Sources */,
+				9948E7861773D0E9001F2D36 /* Hasher.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

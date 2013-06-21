@@ -35,7 +35,7 @@ public:
 
 #define TABLE_SIZE 100 // Change as necessary
 
-#define TOMBSTONE new TableEntry("zzzzzzzz", 0)
+#define TOMBSTONE new TableEntry("zzzzzzzz", -1)
 
 class Hasher {
     
@@ -54,8 +54,9 @@ private:
     
     // Define any other necessary helper functions that are not part of the public interface:
     
-    unsigned int goodHash(std::string);
-    unsigned int poorHash(std::string);
+    unsigned int goodHash(std::string key);
+    unsigned int poorHash(std::string key);
+    unsigned int altHash(std::string key);
     
     // Returns the key stored at given subscript.
     const std::string getKey(const int);

@@ -20,7 +20,8 @@ Hasher::Hasher(char hashType, char probeType){
     this->hashType = hashType;
     this->probeType = probeType;
     numProbes = 0;
-    table = new TableEntry*[TABLE_SIZE];
+    hashTableSize = TABLE_SIZE;
+    table = new TableEntry*[hashTableSize];
     numEntries = 0;
 
 }
@@ -33,7 +34,9 @@ Hasher::Hasher(char hashType, char probeType, double loadFactor, char* fileName)
     this->hashTableSize = generateTableSize(this->fileName);
     numProbes = 0;
     table = new TableEntry*[hashTableSize];
-    numEntries = 0;
+    for (int i=0; i < hashTableSize; i++){
+        table[i] = NULL;
+    }
 
 }
 
@@ -46,7 +49,12 @@ Hasher::~Hasher(){
 
 // Private helper functions:
 
-// TODO: Implement this! Temporarily using code from http://stackoverflow.com/a/107657
+/** Hashes and compresses key using good algorithm
+ *  @pre  key is of type string and is non-empty
+ *  @post Computes a summation of the ASCII character values of key,
+ *        incorporating a prime number, and returns the unsigned 
+ *        integer result modulo size of table
+ */
 unsigned int Hasher::goodHash(std::string key){
     const char* s = key.c_str();
     unsigned hash = 0;
@@ -54,17 +62,41 @@ unsigned int Hasher::goodHash(std::string key){
     {
         hash = hash * 101  +  *s++;
     }
-    return hash % TABLE_SIZE;
+    return hash % hashTableSize;
 }
 
-// Takes a string key and generates a hash number by taking the sum of its ASCII character values
+/** Hashes and compresses key using poor algorithm
+ *  @pre  key is of type string and is non-empty
+ *  @post iterates through characters of key and returns the unsigned
+ *        integer sum of their ASCII character values modulo size of table
+ */
 unsigned int Hasher::poorHash(std::string key){
-    int sum = 0;
+    int hash = 0;
     for(int i = 0; i < key.size(); i++){
-        sum += key[i]+0;
+        hash += key[i]+0;
     }
-    return sum % TABLE_SIZE;
+    return hash % hashTableSize;
 }
+
+
+/** Hashes and compresses key using good algorithm
+ *  @pre  key is of type string and is non-empty
+ *  @post Computes a summation of the ASCII character values of key,
+ *        incorporating a prime number, and returns the unsigned
+ *        integer result modulo size of table
+ */
+unsigned int Hasher::altHash(std::string key){
+    const char* s = key.c_str();
+    unsigned hash = 0;
+    while (*s)
+    {
+        hash = hash * 103  +  *s++;
+    }
+    return hash % hashTableSize;
+}
+
+
+
 
 // Returns the key stored at given subscript.
 const std::string Hasher::getKey(const int subscript){
@@ -108,8 +140,12 @@ const bool Hasher::isPrime(const int x){
 }
 
 
-// Reads a file, determines the number of records, and returns
-// the next prime number greater than 2 * the number of records
+// Reads a file, determines the number of records, and generates an prime integer 
+// representing a table size that would accommodate for a hash map
+/** @pre  filename is a pointer to a character and is the name of the file to be read
+ *  @post counts the number of non-empty lines in the file, doubles it, increments up to 
+ *        the next prime number and returns the result, an integer
+ */
 int Hasher::generateTableSize(char* filename){
     int num = 0;
     std::string line;
@@ -136,71 +172,178 @@ int Hasher::generateTableSize(char* filename){
 }
 
 
-//void Hasher::rehash() {
-//    // Create a new table whose size is double the current table.
-//    int otherHashTableSize = 2 * hashTableSize;
-//    
-//    while(not isPrime(otherHashTableSize)){
-//        otherHashTableSize++;
-//    }
-//    TableEntry* otherTable = new TableEntry[hashTableSize * 2]
-//    // Swap this table with the current table.
-//    table.swap(otherTable);
-//
-//    // Reinsert all items from old table to new.
-//    num_deletes = 0;
-//    for (int i = 0; i < otherHashTableSize; i++) {
-//        if ((otherTable[i] != NULL) && (otherTable[i] != TOMBSTONE)) {
-//            int index = search(otherTable[i]->getKey);
-//            table[index] = otherTable[i];
-//        }
-//    }
-//}
+
 
 // Define the following functions:
 
 // See assignment description.
 bool Hasher::search(std::string key, int& subscript){ // for goodHash
-    char intent = 's';
-    std::cout << "in search..." << std::endl;
-    bool found = false;
-    int index = goodHash(key);
-    int probes = 0;
     
-    /*// Debugging lines
-    TableEntry* testEntry = new TableEntry("HBZEJKGA", 10);
-    table[index] = testEntry;
-    table[47] = TOMBSTONE;
-    int success;
-    bool truth = (table[47] == TOMBSTONE);
-    char *realname = abi::__cxa_demangle(typeid(table[47]->getKey()).name(), 0, 0, &success);
-    std::cout << truth << "  " << table[47]->getKey() << "  "<< realname << std::endl;
-    */
-
-    if (intent == 's') {
-        while (     table[index] != NULL
-               && ( table[index]->getKey() == "zzzzzzzz" // equality check for instances???
-                   ||   table[index]->getKey() != key) ){
-                   probes++;
-                   index = (index + probes * probes % hashTableSize);
-               }
-        found = (table[index]->getKey() == key);
-        if(found) subscript = index;
-        numProbes += probes; // Might be unneccessary
-
-    } else if (intent == 'i'){
-        while (     table[index] != NULL
-               && ( table[index] == TOMBSTONE // equality check for instances???
-                   ||   table[index]->getKey() != key) ){
-                   probes++;
-                   index = (index + probes * probes % hashTableSize);
-               }
-        found = (table[index]->getKey() == key);
-        if(found) subscript = index;
-        numProbes += probes; // Might be unneccessary
+    bool isFound = true;
+    
+    bool tombFound = false;
+    int firstTomb;
+    
+    
+    //  GOOD HASH AND QUAD PROBE
+    if (this->hashType == 'g' && this->probeType == 'q'){
+        int index = goodHash(key) % hashTableSize;
+        
+        if (table[index] == NULL){
+            isFound = false;
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        else if (this->getKey(index) == key){
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        
+        else {
+            while (key != this->getKey(index)){
+                if(numProbes == hashTableSize){
+                    isFound = false;
+                    break;
+                }
+                if (table[index] == TOMBSTONE){
+                    tombFound = true;
+                    firstTomb = index;
+                }
+                numProbes++;
+                index = (index + numProbes * numProbes % hashTableSize);
+                
+            }
+            
+        }
+        if(isFound)
+            subscript = index;
         
     }
-    return found;
+    
+    
+    
+    //  POOR HASH AND QUAD PROBE
+    if (this->hashType == 'p' && this->probeType == 'q'){
+        int index = poorHash(key) % hashTableSize;
+        
+        if (table[index] == NULL){
+            isFound = false;
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        else if (this->getKey(index) == key){
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        
+        else {
+            while (key != this->getKey(index)){
+                if(numProbes == hashTableSize){
+                    isFound = false;
+                    break;
+                }
+                if (table[index] == TOMBSTONE){
+                    tombFound = true;
+                    firstTomb = index;
+                }
+                numProbes++;
+                index = (index + numProbes * numProbes % hashTableSize);
+                
+            }
+            
+        }
+        if(isFound)
+            subscript = index;
+    }
+    
+    //  GOOD HASH AND DOUBLE PROBE
+    if (this->hashType == 'p' && this->probeType == 'd'){
+        int index = goodHash(key) % hashTableSize;
+        
+        if (table[index] == NULL){
+            isFound = false;
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        else if (this->getKey(index) == key){
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        
+        else {
+            while (key != this->getKey(index)){
+                if(numProbes == hashTableSize){
+                    isFound = false;
+                    break;
+                }
+                if (table[index] == TOMBSTONE){
+                    tombFound = true;
+                    firstTomb = index;
+                }
+                numProbes++;
+                index = (index + numProbes * numProbes % hashTableSize);
+                
+            }
+            
+        }
+        if(isFound)
+            subscript = index;
+        
+    }
+    
+    //  POOR HASH AND DOUBLE PROBE
+    if (this->hashType == 'g' && this->probeType == 'd'){
+        int index = poorHash(key) % hashTableSize;
+        
+        if (table[index] == NULL){
+            isFound = false;
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        else if (this->getKey(index) == key){
+            subscript = index;
+            numProbes++;
+            return isFound;
+        }
+        
+        
+        else {
+            while (key != this->getKey(index)){
+                if(numProbes == hashTableSize){
+                    isFound = false;
+                    break;
+                }
+                if (table[index] == TOMBSTONE){
+                    tombFound = true;
+                    firstTomb = index;
+                }
+                numProbes++;
+                index = (index + numProbes * numProbes % hashTableSize);
+                
+            }
+            
+        }
+        if(isFound)
+            subscript = index;
+        
+    }
+    
+    
+    return isFound;
 }
 
 
@@ -209,43 +352,29 @@ bool Hasher::search(std::string key, int& subscript){ // for goodHash
 bool Hasher::insert(std::string key, int value){
     
 //    double loadFactor = numEntries / TABLE_SIZE;
-//    
+//
 //    if (loadFactor > LOAD_THRESHOLD) {
 //        rehash(); // Double the size of the table.
 //    }
-//    // Find the position in the table.
-//    size_t index = locate(entry.first);
-//    // See whether it is empty.
-//    if (the_table[index] == NULL) {
-//        // Create a new entry.
-//        the_table[index] = new Entry_Type(entry);
-//        num_keys++;
-//        return std::make_pair(iterator(this, index), true);
-//    } else {
-//        // Item is already in the table.
-//        return std::make_pair(iterator(this, index), false);
-//    }
-
-    TableEntry* newEntry = new TableEntry("HBZEJKGA", 10);
-    int subscript = -1;
-    bool found = search("HBZEJKGA", subscript);
-
-    if (found) table[subscript] = newEntry;
-
-    numEntries++;
-    return found;
+    int subs = -1;
+    search(key, subs);
+    TableEntry* newEntry = new TableEntry(key, value);
+    table[subs] = newEntry;
+    
+    return true;
 
 }
 
 // See assignment description.
 bool Hasher::remove(std::string key){
     
-    int index = -1;
-    bool found = search(key,index);
-    
-    if(found) table[index] = TOMBSTONE;
-    numEntries--;
-    return found;
+//    int index = -1;
+//    bool found = search(key,index);
+//    
+//    if(found) table[index] = TOMBSTONE;
+//    numEntries--;
+//    return found;
+    return false;
 
 };
 
@@ -262,10 +391,11 @@ bool Hasher::isFull(){
 //        32  RHJMIVTA   2
 //
 void Hasher::printTable(){
-    
     for(int i = 0; i < hashTableSize; i++){
         TableEntry* entry = table[i];
-        if(entry != NULL) std::cout << std::setw(3) << i << entry->getKey() << entry->getValue();
+        if(entry != NULL) std::cout
+                         << i << " " << entry->getKey()<< " " << entry->getValue()
+                         << std::endl;
     }
 }
 
